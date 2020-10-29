@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+
+  "name": "Consentful Messaging",
+  "description": "Giving Twitter users control over their messages",
+  "version": "0.0.1",
+  "web_accessible_resources": ["img/icon.png", "js/libraries/oauth.min.js"],
+  "content_scripts": [
+    {
+      "matches": ["http://www.twitter.com/*", "https://www.twitter.com/*",
+                  "http://twitter.com/*", "https://twitter.com/*"],
+      "js": ["js/libraries/jquery-min.js", "js/libraries/jquery-ui.min.js", "js/libraries/oauth.min.js", "js/content.js", "js/popup.js"],
+       "css": ["css/libraries/bootstrap.min.css", "css/libraries/bootstrap-theme.min.css", "css/libraries/jquery-ui.css","css/content.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "*://*.twitter.com/*",
+    "*://oauth.io/*"
+  ],
+
+  "background": {
+    "scripts": ["js/background.js"]
+  },
+  "content_security_policy": "script-src 'self' https://*.twimg.com https://cm.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads https://oauth.io https://ssl.google-analytics.com; object-src *; image-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; data: *"
+
+}
+
