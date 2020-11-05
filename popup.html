@@ -4,29 +4,45 @@
  value "popup.html".
  -->
 <html>
-  <head>
-    <title>Consentful Messaging</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src *; img-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads ; style-src 'self' 'unsafe-inline'; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; script-src *  https://stats.g.doubleclick.net 'unsafe-inline' 'unsafe-eval'" >
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    
-    <script type="text/javascript" src="js/libraries/oauth.min.js"></script>
+<head>
+  <title>Consentful Messaging</title>
+  <link rel="stylesheet" href="css/popup.css" type="text/css">
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="css/popup.css">
-    <link rel="stylesheet" href="css/libraries/bootstrap.min.css">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src *; img-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads ; style-src 'self' 'unsafe-inline'; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; script-src *  https://stats.g.doubleclick.net 'unsafe-inline' 'unsafe-eval'">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="css/libraries/bootstrap-theme.min.css">
-  </head>
 
-  <body>
-    
+  <script type="text/javascript" src="js/libraries/oauth.min.js"></script>
 
-    
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="css/popup.css">
+  <link rel="stylesheet" href="css/libraries/bootstrap.min.css">
 
-  </body>
-  <script type="text/javascript" src="js/popup.js"></script>
-  <script type="text/javascript" src="js/content.js"></script>
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="css/libraries/bootstrap-theme.min.css">
+</head>
+
+<body>
+  <div>
+    <h1>Consentful Messages</h1>
+
+    <p style="position: absolute; width: 132px; height: 29px; left: 27px; top: 86px;">
+      Your information will only be stored privately
+    </p>
+
+    <img src="/img/chat.png"></img>
+    <button type="button">Login with Twitter</button>
+
+    <p style="position: absolute; width: 239px; height: 15px; left: 31px; top: 175px; text-align: center;">
+      This extension was developed as part of a research study.
+    </p>
+  </div>
+</body>
+
+<script type="text/javascript" src="js/popup.js"></script>
+<script type="text/javascript" src="js/content.js"></script>
+
 </html>
