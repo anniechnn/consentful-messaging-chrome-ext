@@ -1,21 +1,25 @@
+
 var URL_HEADER = "http://localhost:8000"
 
-function getMessageSenders() {
-  if (document.location.href == 'https://twitter.com/messages') {
-    var messageTabElement = document.querySelectorAll('[aria-label="Timeline: Messages"]')[0];
-    if(messageTabElement != null){
-      var messages = messageTabElement.querySelectorAll('[data-testid="conversation"]');
-      console.log(messages);
-      for(var i=0; i<messages.length; i++) {
-        var userCandidate = messages[i].querySelector('a')
-        var canId = userCandidate.href.replace("https://twitter.com/", '')
-        console.log(canId);
-        applyNetworkRules(canId);
-      }
-    }
+function checkProfile() {
+    console.log('check profile');
   }
+  
+function setLocalStorage() {}
+  
+function scanUser() {
+  var messageSenders = [];
+  document.querySelectorAll("div.css-901oao.css-bfa6kz.r-jwli3a.r-1qd0xha.r-a023e6.r-b88u0q.r-ad9z0x.r-bcqeeo.r-3s2u2q.r-qvutc0 span span").forEach(
+    function(find_id){
+      console.log(find_id.innerText);
+      messageSenders.push(find_id.innerText);
+    }
+  );
+  return messageSenders;
+  // var divText = document.getElementsByClassName('css-901oao css-16my406 r-1qd0xha r-ad9z0x r-bcqeeo r-qvutc0')[0].innerHTML;
+  // alert(divText);//for alert the inner text  of the div
+  // console.log(divText);//write in console the inner text  of the div
 }
-
 
 function applyNetworkRules(sender){
   // put placeholder for user temporarily
@@ -78,7 +82,7 @@ window.onload = function (ev) {
   else {
     console.log("not in twitter");
   }
-  setInterval(getMessageSenders, 2000);
+//   setInterval(getMessageSenders, 2000);
 };
 
 
