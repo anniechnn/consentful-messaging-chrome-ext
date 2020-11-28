@@ -19,8 +19,7 @@
         "js/libraries/jquery-min.js",
         "js/libraries/jquery-ui.min.js",
         "js/libraries/oauth.min.js",
-        "js/content.js",
-        "js/popup.js"
+        "js/content.js"
       ],
       "css": [
         "css/libraries/bootstrap.min.css",
