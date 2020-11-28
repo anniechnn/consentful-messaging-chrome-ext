@@ -1,0 +1,59 @@
+body {
+    border-radius: 5px;
+    background: #FFFFFF;
+    width: 300px;
+    height: 226px;
+  }
+
+  img {
+    object-fit: contain;
+    position: absolute;
+    width: 143px;
+    height: 108px;
+    left: 155px;
+    top: 10px;
+  }
+
+  h1 {
+    position: absolute;
+    width: 132px;
+    height: 56px;
+    left: 27px;
+    top: 6px;
+
+    color: #47BDFF !important; 
+    font-family: SF Pro Display, serif !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 26px !important;
+    line-height: 25px !important;
+  }
+
+  p {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: SF Compact Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  button {
+    position: absolute;
+    width: 250px;
+    height: 28px;
+    left: 25px;
+    top: 132px;
+    background: #47BDFF;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-family: SF Pro Display;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+  }
