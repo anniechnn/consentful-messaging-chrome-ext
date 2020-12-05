@@ -1,4 +1,10 @@
 
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.getElementById('Login') != null) {
+    document.getElementById('Login').addEventListener('click', oauthScript);
+  }
+});
+
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     // listen for messages sent from background.js
@@ -10,8 +16,11 @@ chrome.runtime.onMessage.addListener(
     }
   });
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('button').addEventListener('click', clickHandler);
-  main();
-});
+function oauthScript() {
+  chrome.tabs.executeScript({
+    file: 'js/oauth.js'
+  });
+}
+
+
 
