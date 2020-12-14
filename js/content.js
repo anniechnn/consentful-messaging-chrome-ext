@@ -23,7 +23,7 @@ function scanMessageSenders() {
     // alert(divText);//for alert the inner text  of the div
     // console.log(divText);//write in console the inner text  of the div
     var messageTabElement = document.querySelectorAll('[aria-label="Timeline: Messages"]')[0];
-    if(messageTabElement != null){
+    if(messageTabElement != null){ // safety
       var messages = messageTabElement.querySelectorAll('[data-testid="conversation"]');
       //console.log(messages);
       for(var i=0; i<messages.length; i++) {
@@ -36,6 +36,20 @@ function scanMessageSenders() {
   } 
 }
 
+function scanNotificationUsers(){
+  if (document.location.href == 'https://twitter.com/notifications') {
+    var messageTabElement = document.querySelectorAll('[aria-label="Timeline: Notifications"]')[0];
+    if(messageTabElement != null){
+      var messages = messageTabElement.querySelectorAll('[role="article"]');
+      // //console.log(messages);
+      for(var i=0; i<messages.length; i++) {
+        var userCandidate = messages[i].querySelector('a');
+        var canId = userCandidate.href.replace("https://twitter.com/", '');
+        console.log(canId);
+      }
+    }
+  } 
+}
 function applyNetworkRules(sender){
   // put placeholder for user temporarily
   var url = URL_HEADER + "/author_network_rules?user=im__jane&sender=" + sender;
@@ -43,7 +57,7 @@ function applyNetworkRules(sender){
   var request = new XMLHttpRequest();
   request.onreadystatechange = function(){
       if (request.readyState == 4 && request.status == 200){
-          console.log('returned: ' + request.responseText)
+          //console.log('returned: ' + request.responseText)
       }
   };
   console.log(url)
@@ -78,6 +92,7 @@ window.onload = function (ev) {
     console.log("not in twitter");
   }
   setInterval(scanMessageSenders, 2000);
+  setInterval(scanNotificationUsers, 2000);
 };
 
 
