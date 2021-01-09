@@ -1,7 +1,7 @@
 
 // Listener for login button
 document.addEventListener('DOMContentLoaded', function () {
-  OAuth.initialize('ACSnwKzHuMiD-R3vKcE1uHyN0kA')
+  OAuth.initialize(OAUTH_PUBLIC_KEY);
   if (document.getElementById('Login') != null) {
     document.getElementById('Login').addEventListener('click', oauthScript);
   }
