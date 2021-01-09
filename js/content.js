@@ -31,6 +31,22 @@ function scanMessageSenders() {
   } 
 }
 
+function scanMessageRequests() {
+  if (document.location.href == 'https://twitter.com/messages/requests') {
+    var messageTabElement = document.querySelectorAll('[aria-label="Timeline: Message requests"]')[0];
+    if(messageTabElement != null){ // safety
+      var messages = messageTabElement.querySelectorAll('[data-testid="conversation"]');
+      for(var i=0; i<messages.length; i++) {
+        var userCandidate = messages[i].querySelector('a')
+        var canId = userCandidate.href.replace("https://twitter.com/", '')
+        console.log(canId);
+        applyNetworkRules(canId, userCandidate);
+      }
+    }
+  } 
+}
+
+
 function scanNotificationUsers(){
   if (document.location.href == 'https://twitter.com/notifications') {
     var messageTabElement = document.querySelectorAll('[aria-label="Timeline: Notifications"]')[0];
@@ -105,6 +121,7 @@ window.onload = function (ev) {
     console.log("not in twitter");
   }
   setInterval(scanMessageSenders, 2000);
+  setInterval(scanMessageRequests, 2000);
   setInterval(scanNotificationUsers, 2000);
 };
 
