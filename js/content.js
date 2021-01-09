@@ -25,7 +25,7 @@ function scanMessageSenders() {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
         console.log(canId);
-        applyNetworkRules(canId);
+        applyNetworkRules(canId, userCandidate);
       }
     }
   } 
