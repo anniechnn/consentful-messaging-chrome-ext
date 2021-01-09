@@ -19,7 +19,8 @@
         "js/libraries/jquery-min.js",
         "js/libraries/jquery-ui.min.js",
         "js/libraries/oauth.min.js",
-        "js/content.js"
+        "js/content.js",
+        "js/visualize.js"
       ],
       "css": [
         "css/libraries/bootstrap.min.css",
@@ -32,7 +33,7 @@
   ],
   "browser_action": {
     "default_icon": "img/icon.png",
-    "default_popup": "popup.html"
+    "default_popup": "html/popup.html"
   },
   "permissions": [
     "activeTab",
@@ -43,9 +44,7 @@
     "*://oauth.io/*"
   ],
   "background": {
-    "scripts": [
-      "js/background.js"
-    ]
+    "page": "html/background.html"
   },
-  "content_security_policy": "script-src 'self' https://*.twimg.com https://cm.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads https://oauth.io https://ssl.google-analytics.com; object-src *; image-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; data: *"
+  "content_security_policy": "script-src 'self' https://*.twimg.com https://cm.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads https://oauth.io https://ssl.google-analytics.com; object-src *; www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; data: *"
 }
