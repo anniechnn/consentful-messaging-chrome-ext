@@ -10,6 +10,11 @@ function setLocalStorage() {
 function cacheAccount(username, result) {
 
 }
+
+function currentUser(){
+  // put placeholder for user temporarily
+  return "im__jane"
+}
   
 function scanMessageSenders() {
   if (document.location.href == 'https://twitter.com/messages') {
@@ -37,6 +42,8 @@ function scanNotificationUsers(){
           if (userCandidates[j].href != null){
             var canId = userCandidates[j].href.replace("https://twitter.com/", '');
             console.log(canId);
+            applyNetworkRules(canId, userCandidates[j]);
+            // console.log(userCandidates[j]);
           }
         }
       }
@@ -44,30 +51,45 @@ function scanNotificationUsers(){
   } 
 }
 
-function applyNetworkRules(sender){
-  // put placeholder for user temporarily
-  var url = URL_HEADER + "/author_network_rules?user=im__jane&sender=" + sender;
-    
-  var request = new XMLHttpRequest();
+
+function applyNetworkRules(sender, senderDiv){
+  let url = URL_HEADER + "/author_network_rules?user=" + currentUser() + "&sender=" + sender;
+  let request = new XMLHttpRequest();
   request.onreadystatechange = function(){
       if (request.readyState == 4 && request.status == 200){
-          //console.log('returned: ' + request.responseText)
+          let response = parseResponse(request.responseText)
+          pollStatus(response['task_id'], senderDiv)
       }
   };
-  console.log(url)
   request.open('GET', url);
   request.send();
 }
 
+function parseResponse(response){
+  let response_json = JSON.parse(response);
+  return response_json
+}
 
-// TODO: Weikun
-function checkNotifUserId(document) {
-  let container = document.querySelector(".stream");
-  let items = container.querySelectorAll(".account-group");
-  items.forEach(function(element) {
-    let userIDNode = element.querySelector(".account-group .username > b");
-    console.log(userIDNode)
-  });
+function pollStatus(task_id, senderDiv){
+  let url = URL_HEADER + "/poll_status?task_id=" + task_id;
+
+  let request = new XMLHttpRequest();
+
+  request.onreadystatechange = function (){
+    if (request.readyState == 4 && request.status == 200){
+      let result = parseResponse(request.responseText)
+      console.log(result);
+      if (result["state"] == "PENDING"){
+        setTimeout(function(){pollStatus(task_id)}, 3000)
+      } else if (result["state"] == "SUCCESS"){
+        colorProfileBorder(senderDiv); 
+      }
+    }
+  }
+  
+  request.open('GET', url);
+  request.send();
+
 }
 
 
@@ -88,7 +110,6 @@ window.onload = function (ev) {
 
 
 window.onscroll = function (ev) {
-  accountName = getCurrentAccount();
   if (document.location.href == 'https://twitter.com/home') {
     console.log("scolling");
   }
