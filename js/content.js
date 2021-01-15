@@ -3,12 +3,19 @@ var URL_HEADER = "http://localhost:8000"
 
 // TODO: Weikun
 function setLocalStorage() {
-
+  var userItemArray = (localStorage.getItem('users')) ? 
+      JSON.parse(localStorage.getItem('users')) : {};
+  localStorage.setItem('users', JSON.stringify(userItemArray));
 }
 
 // TODO: Weikun
 function cacheAccount(username, result) {
-
+  var userItemArray = JSON.parse(localStorage.getItem('users'));
+  if (!(username.includes(username))){
+    userItemArray[username] = result;
+    localStorage.setItem('users', JSON.stringify(userItemArray));
+    console.log(userItemArray);
+  }
 }
 
 function currentUser(){
@@ -24,8 +31,9 @@ function scanMessageSenders() {
       for(var i=0; i<messages.length; i++) {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
-        console.log(canId);
+        //console.log(canId);
         applyNetworkRules(canId, userCandidate);
+        cacheAccount(canId, 1);
       }
     }
   } 
@@ -41,6 +49,7 @@ function scanMessageRequests() {
         var canId = userCandidate.href.replace("https://twitter.com/", '')
         console.log(canId);
         applyNetworkRules(canId, userCandidate);
+        //applyNetworkRules(canId);
       }
     }
   } 
@@ -58,7 +67,7 @@ function scanNotificationUsers(){
           if (userCandidates[j].href != null){
             var canId = userCandidates[j].href.replace("https://twitter.com/", '');
             console.log(canId);
-            applyNetworkRules(canId, userCandidates[j]);
+            //applyNetworkRules(canId, userCandidates[j]);
             // console.log(userCandidates[j]);
           }
         }
@@ -78,7 +87,7 @@ function applyNetworkRules(sender, senderDiv){
       }
   };
   request.open('GET', url);
-  request.send();
+  //request.send();
 }
 
 function parseResponse(response){
@@ -112,6 +121,7 @@ function pollStatus(task_id, senderDiv){
 window.onload = function (ev) {
   if (document.location.href == 'https://twitter.com/messages') {
     console.log("in messages")
+    setLocalStorage();
   }
   else if (document.location.href == 'https://twitter.com/home') {
     console.log("in home");
@@ -121,12 +131,13 @@ window.onload = function (ev) {
     console.log("not in twitter");
   }
   setInterval(scanMessageSenders, 2000);
-  setInterval(scanMessageRequests, 2000);
+  //setInterval(scanMessageRequests, 2000);
   setInterval(scanNotificationUsers, 2000);
 };
 
 
 window.onscroll = function (ev) {
+  //accountName = getCurrentAccount();
   if (document.location.href == 'https://twitter.com/home') {
     console.log("scolling");
   }
