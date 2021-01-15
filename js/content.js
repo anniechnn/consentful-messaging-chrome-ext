@@ -11,9 +11,7 @@ function setLocalStorage() {
 // TODO: Weikun
 function cacheAccount(username, result) {
   var userItemArray = JSON.parse(localStorage.getItem('users'));
-  if(username in userItemArray){
-  }// if we have the name in array we skip the username
-  else{
+  if (!(username.includes(username))){
     userItemArray[username] = result;
     localStorage.setItem('users', JSON.stringify(userItemArray));
     console.log(userItemArray);
