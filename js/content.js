@@ -1,17 +1,16 @@
 
 var URL_HEADER = "http://localhost:8000"
 
-// TODO: Weikun
+
 function setLocalStorage() {
   var userItemArray = (localStorage.getItem('users')) ? 
       JSON.parse(localStorage.getItem('users')) : {};
   localStorage.setItem('users', JSON.stringify(userItemArray));
 }
 
-// TODO: Weikun
 function cacheAccount(username, result) {
   var userItemArray = JSON.parse(localStorage.getItem('users'));
-  if (!(username.includes(username))){
+  if (!(username in userItemArray)){
     userItemArray[username] = result;
     localStorage.setItem('users', JSON.stringify(userItemArray));
     console.log(userItemArray);
@@ -22,6 +21,15 @@ function currentUser(){
   // put placeholder for user temporarily
   return "im__jane"
 }
+
+function clearCacheCompetely() {
+  localStorage.clear()
+}
+
+// TODO: Weikun
+function clearAccountsInCache() {
+
+}
   
 function scanMessageSenders() {
   if (document.location.href == 'https://twitter.com/messages') {
@@ -31,8 +39,7 @@ function scanMessageSenders() {
       for(var i=0; i<messages.length; i++) {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
-        //console.log(canId);
-        applyNetworkRules(canId, userCandidate);
+        //applyNetworkRules(canId, userCandidate);
         cacheAccount(canId, 1);
       }
     }
@@ -48,8 +55,7 @@ function scanMessageRequests() {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
         console.log(canId);
-        applyNetworkRules(canId, userCandidate);
-        //applyNetworkRules(canId);
+        //applyNetworkRules(canId, userCandidate);
       }
     }
   } 
