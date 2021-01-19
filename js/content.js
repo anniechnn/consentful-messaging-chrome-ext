@@ -1,5 +1,6 @@
 
-var URL_HEADER = "http://localhost:8000"
+// var URL_HEADER = "http://localhost:8000"
+var URL_HEADER = "https://netrule-message.si.umich.edu"
 
 
 function setLocalStorage() {
@@ -39,7 +40,7 @@ function scanMessageSenders() {
       for(var i=0; i<messages.length; i++) {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
-        //applyNetworkRules(canId, userCandidate);
+        applyNetworkRules(canId, userCandidate);
         cacheAccount(canId, 1);
       }
     }
@@ -55,7 +56,7 @@ function scanMessageRequests() {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
         console.log(canId);
-        //applyNetworkRules(canId, userCandidate);
+        applyNetworkRules(canId, userCandidate);
       }
     }
   } 
@@ -73,7 +74,7 @@ function scanNotificationUsers(){
           if (userCandidates[j].href != null){
             var canId = userCandidates[j].href.replace("https://twitter.com/", '');
             console.log(canId);
-            //applyNetworkRules(canId, userCandidates[j]);
+            applyNetworkRules(canId, userCandidates[j]);
             // console.log(userCandidates[j]);
           }
         }
