@@ -94,7 +94,7 @@ function applyNetworkRules(sender, senderDiv){
       }
   };
   request.open('GET', url);
-  //request.send();
+  request.send();
 }
 
 function parseResponse(response){
@@ -138,7 +138,7 @@ window.onload = function (ev) {
     console.log("not in twitter");
   }
   setInterval(scanMessageSenders, 2000);
-  //setInterval(scanMessageRequests, 2000);
+  setInterval(scanMessageRequests, 2000);
   setInterval(scanNotificationUsers, 2000);
 };
 
