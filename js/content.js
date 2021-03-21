@@ -1,6 +1,6 @@
 
-// var URL_HEADER = "http://localhost:8000"
-var URL_HEADER = "https://netrule-message.si.umich.edu"
+var URL_HEADER = "http://localhost:8000"
+//var URL_HEADER = "https://netrule-message.si.umich.edu"
 
 
 function setLocalStorage() {
@@ -15,6 +15,11 @@ function cacheAccount(username, result) {
     userItemArray[username] = result;
     localStorage.setItem('users', JSON.stringify(userItemArray));
     console.log(userItemArray);
+  }else{
+    if(result != userItemArray[username]){
+      userItemArray[username] = result;
+      localStorage.setItem('users', JSON.stringify(userItemArray));
+    }
   }
 }
 
@@ -40,8 +45,11 @@ function scanMessageSenders() {
       for(var i=0; i<messages.length; i++) {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
-        applyNetworkRules(canId, userCandidate);
-        cacheAccount(canId, 1);
+        var userItemArray = JSON.parse(localStorage.getItem('users'));
+        if (!(canId in userItemArray)){
+          applyNetworkRules(canId, userCandidate);
+          cacheAccount(canId, 'processing');
+       }
       }
     }
   } 
@@ -55,8 +63,10 @@ function scanMessageRequests() {
       for(var i=0; i<messages.length; i++) {
         var userCandidate = messages[i].querySelector('a')
         var canId = userCandidate.href.replace("https://twitter.com/", '')
-        console.log(canId);
-        applyNetworkRules(canId, userCandidate);
+        var userItemArray = JSON.parse(localStorage.getItem('users'));
+        if (!(canId in userItemArray)){
+          applyNetworkRules(canId, userCandidate);
+        }
       }
     }
   } 
@@ -73,9 +83,10 @@ function scanNotificationUsers(){
         for (var j=0; j<userCandidates.length; j++) {
           if (userCandidates[j].href != null){
             var canId = userCandidates[j].href.replace("https://twitter.com/", '');
-            console.log(canId);
-            applyNetworkRules(canId, userCandidates[j]);
+            if (!(canId in userItemArray)){
+              applyNetworkRules(canId, userCandidates[j]);
             // console.log(userCandidates[j]);
+            }
           }
         }
       }
@@ -90,7 +101,7 @@ function applyNetworkRules(sender, senderDiv){
   request.onreadystatechange = function(){
       if (request.readyState == 4 && request.status == 200){
           let response = parseResponse(request.responseText)
-          pollStatus(response['task_id'], senderDiv)
+          pollStatus(sender, response['task_id'], senderDiv)
       }
   };
   request.open('GET', url);
@@ -102,9 +113,8 @@ function parseResponse(response){
   return response_json
 }
 
-function pollStatus(task_id, senderDiv){
-  let url = URL_HEADER + "/poll_status?task_id=" + task_id;
-
+function pollStatus(sender, task_id, senderDiv){
+  let url = URL_HEADER + "/poll_status?task_id=" + task_id + "&user=" + currentUser() + "&sender=" + sender;
   let request = new XMLHttpRequest();
 
   request.onreadystatechange = function (){
@@ -112,9 +122,15 @@ function pollStatus(task_id, senderDiv){
       let result = parseResponse(request.responseText)
       console.log(result);
       if (result["state"] == "PENDING"){
-        setTimeout(function(){pollStatus(task_id)}, 3000)
+        setTimeout(function(){pollStatus(sender, task_id, senderDiv)}, 5000)
       } else if (result["state"] == "SUCCESS"){
-        colorProfileBorder(senderDiv); 
+        cacheAccount(sender, result["result"])
+        
+        if (result["result"] == false){
+          colorProfileBorder(senderDiv);
+          
+        }
+
       }
     }
   }
@@ -137,9 +153,9 @@ window.onload = function (ev) {
   else {
     console.log("not in twitter");
   }
-  setInterval(scanMessageSenders, 2000);
-  setInterval(scanMessageRequests, 2000);
-  setInterval(scanNotificationUsers, 2000);
+  setInterval(scanMessageSenders, 5000);
+  setInterval(scanMessageRequests, 5000);
+  setInterval(scanNotificationUsers, 5000);
 };
 
 
