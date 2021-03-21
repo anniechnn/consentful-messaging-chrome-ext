@@ -34,7 +34,7 @@ function clearCacheCompetely() {
 
 // TODO: Weikun
 function clearAccountsInCache() {
-
+  localStorage.removeItem('users');
 }
   
 function scanMessageSenders() {
