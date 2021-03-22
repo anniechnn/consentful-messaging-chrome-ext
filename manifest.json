@@ -5,7 +5,8 @@
   "version": "0.0.1",
   "web_accessible_resources": [
     "img/icon.png",
-    "js/libraries/oauth.min.js"
+    "js/libraries/oauth-sdk.js",
+    "js/popup.js"
   ],
   "content_scripts": [
     {
@@ -18,7 +19,7 @@
       "js": [
         "js/libraries/jquery-min.js",
         "js/libraries/jquery-ui.min.js",
-        "js/libraries/oauth.min.js",
+        "js/libraries/oauth-sdk.js",
         "js/content.js",
         "js/visualize.js"
       ],

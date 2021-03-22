@@ -1,14 +1,19 @@
 
 // Listener for login button
+
 document.addEventListener('DOMContentLoaded', function () {
-  OAuth.initialize(OAUTH_PUBLIC_KEY);
+  console.log("loaded")
+  console.log("initialized")
+
   if (document.getElementById('Login') != null) {
     document.getElementById('Login').addEventListener('click', oauthScript);
+    console.log("event listener added")
   }
 });
 
 // Run oauth scirpt
 function oauthScript() {
+  console.log("clicked log in")
   chrome.tabs.executeScript({
     file: 'js/oauth.js'
   });
@@ -26,8 +31,3 @@ chrome.runtime.onMessage.addListener(
       }
     }
   });
-
-
-
-
-
