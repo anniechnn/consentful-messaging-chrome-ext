@@ -8,11 +8,76 @@
 
 <head>
   <title>Consentful Messaging</title>
+  <style>
+
+  body {
+    border-radius: 5px;
+    background: #FFFFFF;
+    width: 300px;
+    height: 226px;
+  }
+
+  /*img {
+    object-fit: contain;
+    position: absolute;
+    width: 143px;
+    height: 108px;
+    left: 155px;
+    top: 10px;
+  }*/
+
+  h1 {
+    position: absolute;
+    width: 132px;
+    height: 56px;
+    left: 27px;
+    top: 6px;
+
+    color: #47BDFF !important; 
+    font-family: SF Pro Display, serif !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+    font-size: 26px !important;
+    line-height: 25px !important;
+  }
+
+  p {
+    color: rgba(0, 0, 0, 0.5);
+    font-family: SF Compact Display;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  button {
+    position: absolute;
+    width: 250px;
+    height: 28px;
+    left: 25px;
+    top: 132px;
+    background: #47BDFF;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-family: SF Pro Display;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+  }
+  </style>
 
   <meta http-equiv="Content-Security-Policy"
     content="default-src *; img-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads ; style-src 'self' 'unsafe-inline'; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; script-src *  https://stats.g.doubleclick.net 'unsafe-inline' 'unsafe-eval'">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+  <script type="text/javascript" src="../js/libraries/oauth.min.js"></script>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="../css/libraries/bootstrap.min.css">
@@ -28,16 +93,19 @@
       Your information will only be stored privately
     </p>
 
-    <img src="/img/chat.png"></img>
-    <button id="Login">Login with Twitter</button>
+  <img src="https://raw.githubusercontent.com/trusttri/consentful-messaging-chrome-ext/main/img/chat.png"></img> 
+    <!--<img src="https://github.com/trusttri/consentful-messaging-chrome-ext/blob/main/img/chat.png" width="143" height="105" left="155" top="10">-->
 
+<form action="file:///Users/thekraken/consentful-messaging-chrome-ext/html/Interface.html">
+    <button class="button">Consentful Messaging</button>
+</form>
+   
     <p style="position: absolute; width: 239px; height: 15px; left: 31px; top: 175px; text-align: center;">
       This extension was developed as part of a research study.
     </p>
   </div>
 </body>
-  <script type="text/javascript" src="../js/libraries/oauth-sdk.js"></script>
-  <script type="text/javascript" src="../js/popup.js"></script>
-  <script type="text/javascript" src="../js/config.js"></script>
-  
+<script type="text/javascript" src="../js/config.js"></script>
+<script type="text/javascript" src="../js/popup.js"></script>
+
 </html>
