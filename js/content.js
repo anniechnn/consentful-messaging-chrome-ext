@@ -83,6 +83,7 @@ function scanNotificationUsers(){
         for (var j=0; j<userCandidates.length; j++) {
           if (userCandidates[j].href != null){
             var canId = userCandidates[j].href.replace("https://twitter.com/", '');
+            var userItemArray = JSON.parse(localStorage.getItem('users'));
             if (!(canId in userItemArray)){
               applyNetworkRules(canId, userCandidates[j]);
             // console.log(userCandidates[j]);

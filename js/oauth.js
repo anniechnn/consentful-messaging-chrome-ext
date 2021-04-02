@@ -22,13 +22,14 @@ function login() {
       OAuth.clearCache();
       console.log("cleared")
 
-      OAuth.popup('twitter').then(function (twitter) {
+      OAuth.popup('twitter').done(function (twitter) {
         console.log(twitter)
         var oauth_token = twitter['oauth_token']
         var oauth_token_secret = twitter['oauth_token_secret']
         console.log(oauth_token)
         console.log(oauth_token_secret)
       }).fail(function (err) {
+        console.log(OAuth.popup('twitter'))
         console.log(err)
       })
     }, 650)
