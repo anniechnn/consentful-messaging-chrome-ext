@@ -34,10 +34,16 @@ function clearCacheCompetely() {
 
 // TODO: Weikun
 function clearAccountsInCache() {
-  localStorage.removeItem('users');
+  var userItemArray = JSON.parse(localStorage.getItem('users'));
+  for(username in userItemArray){
+    if ( userItemArray[username] == "processing"){
+      delete userItemArray.username
+    }
+  }
 }
   
 function scanMessageSenders() {
+  clearAccountsInCache()
   if (document.location.href == 'https://twitter.com/messages') {
     var messageTabElement = document.querySelectorAll('[aria-label="Timeline: Messages"]')[0];
     if(messageTabElement != null){ // safety
