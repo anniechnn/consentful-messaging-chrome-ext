@@ -1,0 +1,60 @@
+h1 {
+    color: DeepSkyBlue;
+    font-size: 1.5em;
+    margin: 0;
+    margin-bottom: 7px;
+    padding: 4px;
+    font-style: bold;
+    text-align: center;
+    letter-spacing: 0.5em;
+    border-bottom-style: solid;
+    border-bottom-width: 0.5em;
+    border-bottom-color: Gold;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    background-color: #DE3163;
+    font-size: 1em;
+    margin: 0;
+    padding: 2px;
+    padding-left: 14px;
+    text-align: center;
+}
+body {
+    width: 450px;
+	  font-family: arial, helvetica, sans-serif;
+    font-size: 0.75em;
+    color: DeepSkyBlue;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    word-spacing: 0.5em;
+    line-height: 1.5;
+}
+button {
+  background-color: #DE3163;
+  border: none;
+  color: White;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 10px;
+  margin: 4px 2px;
+  cursor: pointer;
+  display: block;
+  width: 100px;  
+  border-radius: 5px;   
+  position:relative; 
+  left:36%;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+button{
+    margin: 4 auto;
+}
