@@ -3,23 +3,11 @@
 
 document.addEventListener('DOMContentLoaded', function () {
   console.log("loaded")
-  console.log("initialized")
 
   if (document.getElementById('Login') != null) {
-    document.getElementById('Login').addEventListener('click', oauthScript);
     console.log("event listener added")
   }
 });
-
-// Run oauth scirpt
-function oauthScript() {
-  console.log("clicked log in")
-  chrome.tabs.executeScript({
-    file: 'js/oauth.js'
-  });
-  window.location.href = chrome.extension.getURL("html/dashboard.html");
-  chrome.browserAction.setPopup({popup: "html/dashboard.html"});
-}
 
 
 // Listener for in twitter messages page
