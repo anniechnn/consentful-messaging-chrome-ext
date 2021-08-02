@@ -6,6 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (document.getElementById('Login') != null) {
     console.log("event listener added")
+    document.getElementById("Login").addEventListener("click", function() {
+      console.log("click");
+      let request = new XMLHttpRequest();
+      request.open('GET', 'http://127.0.0.1:8000/accounts/twitter/login/');
+      request.send();
+    });
   }
 });
 

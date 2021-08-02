@@ -44,5 +44,5 @@
   "background": {
     "page": "html/dashboard.html"
   },
-  "content_security_policy": "script-src 'self' https://*.twimg.com https://cm.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads https://ssl.google-analytics.com; object-src *; www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; data: *"
+  "content_security_policy": "script-src 'self' https://*.twimg.com https://cm.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads https://ssl.google-analytics.com; object-src *; www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net https://www.google.com/ads; connect-src www.google-analytics.com stats.g.doubleclick.net https://stats.g.doubleclick.net https://stats.g.doubleclick.net http://127.0.0.1:8000/accounts/twitter/login/ https://www.google.com/ads; data: *"
 }
